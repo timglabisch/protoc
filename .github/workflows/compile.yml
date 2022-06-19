@@ -29,7 +29,7 @@ jobs:
       -
         name: Build and push
         run: |
-          apt-get install -y qemu-user qemu qemu-user-static
+          sudo apt-get install -y qemu-user qemu qemu-user-static
           docker buildx build --platform linux/amd64 -t timglabisch/protoc:${{ steps.vars.outputs.tag }}_amd64 --push .
           docker buildx build --platform linux/arm64 -t timglabisch/protoc:${{ steps.vars.outputs.tag }}_arm64 --push .
           docker manifest create timglabisch/protoc:${{ steps.vars.outputs.tag }} timglabisch/protoc:${{ steps.vars.outputs.tag }}_amd64 timglabisch/protoc:${{ steps.vars.outputs.tag }}_arm64
